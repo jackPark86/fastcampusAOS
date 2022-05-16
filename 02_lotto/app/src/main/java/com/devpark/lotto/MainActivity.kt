@@ -13,6 +13,13 @@ import androidx.core.view.size
 
 class MainActivity : AppCompatActivity() {
 
+    /**
+     * 호출 시점에 by lazy 정의에 의해서 초기화를 진행한다.
+     * val(immutable)에서만 사용이 가능하다.
+     * val이므로 값을 교체하는 건 불가능하다.
+     * 초기화를 위해서는 함수명이라도 한번 적어줘야 한다.
+     * lazy을 사용하는 경우 기본 Synchronized로 동작한다.
+     */
     private val btnClear: Button by lazy {
         findViewById(R.id.btn_clear)
     }
@@ -41,6 +48,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var didRun = false
+
+    /**
+     * set 자료구조의 특징은
+     * 1) 중복이 허용되지 않는다.
+     * 2) 순서가 보장되지 않는다.
+     */
     private val pickNumberSet = hashSetOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,14 +74,13 @@ class MainActivity : AppCompatActivity() {
         btnRun.setOnClickListener {
             val list = getRandomNumber()
             didRun = true
+            //forEachIndexed는 forEach와 동일한 기능을 수행하며 value뿐 아니라 해당 value의 index까지 같이 사용할 수 있다.
             list.forEachIndexed { index, nubmer ->
                 val textView = tvList[index]
                 textView.text = nubmer.toString()
                 textView.isVisible = true
 
                 setNumberBackground(nubmer, textView)
-
-
             }
             Log.d("MainActivity", list.toString())
         }
@@ -98,8 +110,8 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (pickNumberSet.size >= 5) {
-                Toast.makeText(this, "번호는 5개까지만 선택할 수 있습니다!", Toast.LENGTH_SHORT).show()
+            if (pickNumberSet.size >= 6) {
+                Toast.makeText(this, "번호는 6개까지만 선택할 수 있습니다!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -131,6 +143,8 @@ class MainActivity : AppCompatActivity() {
     private fun initClearButton() {
         btnClear.setOnClickListener {
             pickNumberSet.clear()
+
+            //forEach는 collections의 각 element들에 대해서 특정한 작업을 수행할 수 있도록 해준다.
             tvList.forEach {
                 it.isVisible = false
             }

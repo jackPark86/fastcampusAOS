@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
             if (chPwMode) {
                 //번호 저장하기능 기능
-                //SHaredPreferences에서 마지막 저장시 commit() 동기식, apply는 비동기식으로 저장
+                //SharedPreferences에서 마지막 저장시 commit() 동기식, apply는 비동기식으로 저장
                 //default는 apply() 비동기
                 pwPreferences.edit(true) {
                     putString("PASSWORD", pwFormUser)

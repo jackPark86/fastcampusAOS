@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "857637295254",
+    "project_id": "todaywisesaying-38a6e",
+    "storage_bucket": "todaywisesaying-38a6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857637295254:android:b34fde5acdd61ce2f6deb7",
+        "android_client_info": {
+          "package_name": "com.devpark.todaywisesaying"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857637295254-iadqmjekjp21qo6un0bh1m48bpdq5cqo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB13TtTj7DBBSzRVgy3tgmVpS6OKc5UCN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857637295254-iadqmjekjp21qo6un0bh1m48bpdq5cqo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

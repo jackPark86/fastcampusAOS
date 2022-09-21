@@ -8,16 +8,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
+class MatcherUserAdapter : ListAdapter<CardItem, MatcherUserAdapter.ViewHolder>(diffUtil) {
 
-class CardItemAdapter : ListAdapter<CardItem, CardItemAdapter.ViewHolder>(diffUtil) {
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardItemAdapter.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): MatcherUserAdapter.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ViewHolder(inflater.inflate(R.layout.item_card, parent, false))
+        return ViewHolder(inflater.inflate(R.layout.item_matched_user, parent, false))
     }
 
-    override fun onBindViewHolder(holder: CardItemAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(currentList[position])
     }
 
@@ -38,8 +39,9 @@ class CardItemAdapter : ListAdapter<CardItem, CardItemAdapter.ViewHolder>(diffUt
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(cardItem: CardItem) {
-            view.findViewById<TextView>(R.id.nameTextView).text = cardItem.name
+            view.findViewById<TextView>(R.id.userNameTextView).text = cardItem.name
         }
     }
+
 
 }

@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "616851371891",
+    "firebase_url": "https://fastcampus-tinder-d2b5b-default-rtdb.firebaseio.com",
+    "project_id": "fastcampus-tinder-d2b5b",
+    "storage_bucket": "fastcampus-tinder-d2b5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616851371891:android:d534783c8c7239cdf97706",
+        "android_client_info": {
+          "package_name": "com.example.carrotmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616851371891-1hfpmq83j9bourjgi9l65qsgervjniik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ6zJ9YTcIwN-zRrd0ZXoNJcZ7sKmCVxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616851371891-1hfpmq83j9bourjgi9l65qsgervjniik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616851371891:android:964660b1935856f6f97706",
+        "android_client_info": {
+          "package_name": "com.example.tinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616851371891-1hfpmq83j9bourjgi9l65qsgervjniik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ6zJ9YTcIwN-zRrd0ZXoNJcZ7sKmCVxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616851371891-1hfpmq83j9bourjgi9l65qsgervjniik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

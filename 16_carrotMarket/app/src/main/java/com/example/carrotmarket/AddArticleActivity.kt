@@ -79,11 +79,11 @@ class AddArticleActivity : AppCompatActivity() {
 
             if (selectedUri != null) {
                 val photoUri = selectedUri ?: return@setOnClickListener
+                //고차함수 사용
                 uploadPhoto(
                     photoUri,
                     successHandler = { uri ->
                         uploadArticle(sellerId, title, price, uri)
-
                     },
                     errorHandler = {
                         Toast.makeText(this, "사진 업로드에 실패했습니다", Toast.LENGTH_SHORT).show()
@@ -98,6 +98,7 @@ class AddArticleActivity : AppCompatActivity() {
 
     }
 
+    //firebase에 이미지 업로드 후 이미지 URL 가져오기
     private fun uploadPhoto(uri: Uri, successHandler: (String) -> Unit, errorHandler: () -> Unit) {
         val fileName = "${System.currentTimeMillis()}.png"
         storage.reference.child("article/photo").child(fileName)

@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carrotmarket.AddArticleActivity
 import com.example.carrotmarket.DBKey.Companion.DB_ARTICLES
+import com.example.carrotmarket.DBKey.Companion.DB_CHILD_CHAT
+import com.example.carrotmarket.DBKey.Companion.DB_USERS
 import com.example.carrotmarket.R
+import com.example.carrotmarket.chat.ChatListItem
 import com.example.carrotmarket.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +28,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var articleAdapter: ArticleAdapter
     private lateinit var articleDB: DatabaseReference
+    private lateinit var userDB: DatabaseReference
     private val articleList = mutableListOf<ArticleModel>()
 
     private var binding: FragmentHomeBinding? = null
@@ -42,8 +46,41 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         articleList.clear()
 
         articleDB = Firebase.database.reference.child(DB_ARTICLES)
+        userDB = Firebase.database.reference.child(DB_USERS)
 
-        articleAdapter = ArticleAdapter()
+        articleAdapter = ArticleAdapter(onItemClicked = { articleModel ->
+            if (auth.currentUser != null) {
+                //로그인을 한 상태
+                if (auth.currentUser?.uid != articleModel.sellerId) {
+                    //채팅방 만들기
+                    val chatRoom = ChatListItem(
+                        buyerId = auth.currentUser!!.uid,
+                        sellerId = articleModel.sellerId,
+                        itemTitle = articleModel.title,
+                        key = System.currentTimeMillis()
+                    )
+                    userDB.child(auth.currentUser!!.uid)
+                        .child(DB_CHILD_CHAT)
+                        .push()
+                        .setValue(chatRoom)
+
+                    userDB.child(articleModel.sellerId)
+                        .child(DB_CHILD_CHAT)
+                        .push()
+                        .setValue(chatRoom)
+
+                    Snackbar.make(view, "채팅방이 생성되었습니다. 채팅탭에서 확인해주세요!", Snackbar.LENGTH_LONG).show()
+                } else {
+                    //내가 올린 아이템
+                    Snackbar.make(view, "내가 올린 아이템입니다.", Snackbar.LENGTH_LONG).show()
+                }
+            } else {
+                //로그인을 안 한 상태
+                Snackbar.make(view, "로그인 후 사용해 주세요!", Snackbar.LENGTH_LONG).show()
+            }
+
+
+        })
         fragmentHomeBinding.articleRecyclerView.layoutManager = LinearLayoutManager(context)
         fragmentHomeBinding.articleRecyclerView.adapter = articleAdapter
 

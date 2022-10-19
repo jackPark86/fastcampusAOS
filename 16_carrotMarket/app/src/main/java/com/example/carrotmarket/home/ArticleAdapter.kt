@@ -10,7 +10,8 @@ import com.example.carrotmarket.databinding.ItemArticleBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ArticleAdapter : ListAdapter<ArticleModel, ArticleAdapter.ViewHolder>(diffUtil) {
+class ArticleAdapter(val onItemClicked: (ArticleModel) -> Unit) :
+    ListAdapter<ArticleModel, ArticleAdapter.ViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleAdapter.ViewHolder {
         return ViewHolder(
@@ -35,7 +36,6 @@ class ArticleAdapter : ListAdapter<ArticleModel, ArticleAdapter.ViewHolder>(diff
             override fun areContentsTheSame(oldItem: ArticleModel, newItem: ArticleModel): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 
@@ -54,6 +54,10 @@ class ArticleAdapter : ListAdapter<ArticleModel, ArticleAdapter.ViewHolder>(diff
             if (articleModel.imageUrl.isNotEmpty()) {
                 Glide.with(binding.thumbnailImageView).load(articleModel.imageUrl)
                     .into(binding.thumbnailImageView)
+            }
+
+            binding.root.setOnClickListener {
+                onItemClicked(articleModel)
             }
 
         }
